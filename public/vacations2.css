@@ -1,0 +1,91 @@
+.headline {
+  color: gray;
+  font-size: 32px;
+  
+  text-align: center;
+}
+
+.ruler {
+  border: 1px solid gray;
+  margin-bottom: 40px;
+}
+
+.packages-content {
+  margin: 10px;
+  box-shadow: 0 0 5px rgb(0, 0, 0, 0.4);
+  display: flex;
+  justify-content: space-between;
+  width: auto;
+  height: 200px;
+  overflow: hidden;
+  border-radius: 5px;
+}
+.left-section img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+.left-section {
+  width: 300px;
+  height: 100%;
+}
+
+#packageName {
+  font-size: 24px;
+  margin-bottom: 50px;
+}
+
+#packageDesc {
+  font-size: 18px;
+  margin-bottom: 5px;
+}
+
+#packageStartDate {
+  color: gray;
+  font-size: 14px;
+}
+
+.middle-section {
+  flex: 1;
+  padding: 10px 15px;
+}
+
+.right-section {
+  position: relative;
+  width: 120px;
+  height: auto;
+}
+
+#packagePrice {
+  font-size: 25px;
+  position: absolute;
+  right: 10px;
+  top: 10px;
+}
+
+.book {
+  text-align: center;
+  cursor: pointer;
+  padding: 15px 10px;
+  color: white;
+  border-radius: 8px;
+  background-color: rgb(0, 114, 234);
+  position: absolute;
+  font-weight: bold;
+  font-size: 18px;
+  bottom: 10px;
+  left: 0;
+  right: 10px;
+}
+
+.book:hover {
+  background-color: rgb(0, 92, 191);
+}
+
+.book:active {
+  background-color: rgb(79, 156, 238);
+}
+.content-header{
+text-align: center;
+}

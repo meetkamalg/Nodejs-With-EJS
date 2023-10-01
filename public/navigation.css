@@ -1,0 +1,30 @@
+.navigation {
+  height: 80px;
+}
+
+.navigation-directories {
+  background-color: gray;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.navigate {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 200px;
+  transition: background-color 0.3s;
+}
+
+.navigate:hover {
+  background-color: rgb(91, 91, 91);
+  cursor: pointer;
+}
+
+.navigation a {
+  text-decoration: none;
+  color: black;
+}

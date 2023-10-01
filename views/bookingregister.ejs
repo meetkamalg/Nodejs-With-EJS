@@ -1,0 +1,109 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>Register</title>
+		<link rel="stylesheet" href="registerform">
+		<script>
+			function validate(myform){  
+				if (!fname.value){
+				  	alert("First Name must have a value");
+				  	fname.focus();
+				  	return false;
+				} 
+				if (!lname.value){
+				  	alert("Last Name must have a value");
+				  	lname.focus();
+				  	return false;
+				}
+				if (!address.value){
+				  	alert("Address must have a value");
+				  	address.focus();
+				  	return false;
+				}
+				if (!city.value){
+				  	alert("City must have a value");
+				  	city.focus();
+				  	return false;
+				}
+				if (!prov.value){
+				  	alert("Province must have a value");
+				  	prov.focus();
+				  	return false;
+				}
+				if (!postal.value){
+				  	alert("Postal Code must have a value");
+				  	return false;
+				}
+				if (!country.value){
+				  	alert("Country must have a value");
+				  	return false;
+				}
+				
+				else{
+					checkPattern(myform);
+				}
+				function checkPattern(){
+				var myInput = document.getElementById("postal");
+				var reg = /(^[a-z][0-9][a-z] ?\d[a-z]\d$)|(^\d{5}( \d{4})?$)/i;
+				if(!reg.test(myInput.value)){
+					alert("Postal code format is invalid");
+					postal.focus();
+					console.log('hey');
+					return false;
+				}else{
+					console.log('hi');
+					return myform.submit();
+				}
+			}
+		}
+	</script>
+	</head>
+	<body>
+		<%- include('header') %> 
+	<section class='form-container'>
+		<div class="left-side">
+			<h1 class="formText">Enter in your information <br> to book package <%=result%> </h1>
+		</div>
+		<div class="right-side">
+		<form method="post" action="/packagebooking">
+			<div class="column">
+			
+				First Name: <input type="text" id="fname" name="CustFirstName">
+			</div>
+			<div class="column">
+				Last Name: <input type="text" id="lname" name="CustLastName">
+			</div>
+			<div class="column">
+				Address: <input type="text" id="address" name="CustAddress">
+			</div>
+			<div class="column">
+					City: <select id="city" name="CustCity">
+							<option value="Calgary">Calgary</option>
+							<option value="Okotoks">Okotoks</option>
+							<option value="Edmonton">Edmonton</option>
+							<option value="Red Deer">Red Deer</option>
+						</select>
+			</div>
+			<div class="column">
+			Province:<select id="prov" name="CustProv">
+						<option value="AB">Alberta</option>
+					</select>
+			</div>
+			<div class="column">
+					Postal Code: <input type="text" id="postal" name="CustPostal">
+			</div>
+			<div class="column">
+			Country:<select id="country" name="CustCountry">
+						<option value="Canada">Canada</option>
+					</select>
+			</div>
+			<div class="column">
+				<button class="check" type="button" onclick="validate(this.form)">Submit</button>
+				<button type="reset" onclick="return confirm('Continue resetting?')">Reset</button>
+			</div>
+			</form>
+			</div>
+	</section>
+	<%- include('footer') %> 
+	</body>
+</html>

@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+	<head>
+			<link rel="stylesheet" href="card" />
+        	<title> Contact Us </title>
+            <style>
+				div.contactBackground
+					{   
+					background-image: url("contact.png");
+						background-size: 360px;
+						background-repeat: no-repeat;
+						padding-bottom: 0px;
+						background-position: center;
+						background-position-y: top;
+						background-color: lightgrey;
+					}
+
+					.row 
+					{
+						display: flex;
+					}
+					.column 
+					{
+						flex: 50%;
+						padding: 10px;
+					}
+                  p
+                  {
+                        position: absolute;
+                        float: right;
+                        width: 40%;
+                        right: 10px;
+                        visibility: hidden;
+                  }
+                  h2
+                  {
+                        text-align:center;
+                        border-style: outset;
+                        padding: 20px;
+						
+				  }
+				  div.headings
+                  {
+                        margin-bottom: 5%;
+						font-size: 24px;
+						font-weight: 700;
+						padding-left: 50px;
+						padding-right: 50px;
+						
+				  }
+				  div.title
+				  {
+						display: flex;
+						align-items:center;
+						height: 550px;
+						text-align: center;
+						justify-content: center;
+				  }
+				  h3
+                  {
+                        margin-bottom: 5%;
+						font-size: 32px;
+						font-weight: 700;
+                  }
+				  input
+				  {
+						padding: 10px;
+						margin: 5px;
+				  }
+				  textarea
+				  {
+						margin: 5px;
+						padding: 10px;
+						width: 380px;
+						height: 150px;
+				  }
+				  button
+				  {
+						padding: 10px;
+						margin: 5px;
+				  }
+            </style>
+            <script>
+                function validate(myform){
+					if (!fname.value){
+				  	alert("First Name must have a value");
+				  	fname.focus();
+				  	return false;
+					} 
+					if (!lname.value){
+				  	alert("Last Name must have a value");
+				  	lname.focus();
+				  	return false;
+					}
+					if (!email.value){
+				  	alert("Email must have a value");
+				  	email.focus();
+				  	return false;
+					}
+					if (!message.value){
+				  	alert("You need a message");
+				  	message.focus();
+				  	return false;
+					}
+				}
+                </script>
+      </head>
+      <body>
+		<%- include('header') %> 
+		<div class="title contactBackground"><h2>Contact Us</h2></div></div>
+			<table align="center">
+				<tr>
+					<td style="padding:50px">
+						<div class="headings"><img src="location.png" style="height:25px; padding-right:10px">Address</div>
+						<label>123 Calgary Way SE, Calgary AB T1Y5T6</label>
+					</td>
+					<td style="padding:50px">
+						<div class="headings"><img src="email.png" style="height:25px; padding-right:10px">Email Address</div>
+						<label>travel.experts@gmail.com</label>
+					</td>
+					<td style="padding:50px" >
+						<div class="headings"><img src="telephone.png" style="height:25px; padding-right:10px">Phone</div>
+						<label>(403) 123-1234</label>
+					</td>
+					<td style="padding:50px">
+						<div class="headings"><img src="fax.png" style="height:25px; padding-right:10px">Fax</div>
+						<label>(403) 123-1235</label>
+					</td>
+				</tr>
+			</table>
+			<div class="row" align="center">
+				<%= console.log(result) %>
+				<div class="column">
+					<table>
+						<form method="post" action="/getintouch">
+						<tr>
+							<td>
+								<h3>Get In Touch</h3>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<input type="text" id="fname" name="fname"placeholder="First Name"/>
+							</td>
+							<td>
+								<input type="text" id="lname" name="lname" placeholder="Last Name"/>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<input type="text" id="phone" name="phone" placeholder="Phone Number (optional)"/>
+							</td>
+							<td>
+								<input type="email" id="email" name="email" placeholder="Email Address"/>
+							</td>
+						</tr>
+						<tr>
+							<td colspan="2">
+								<textarea class="messageBox" type="text" id="message" name="message"  placeholder="Write Your Message"></textarea>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<button type="Reset" onclick="return confirm('Continue resetting?')">Reset</button>
+							</td>
+							<td>
+								<button type="Submit" onclick="return validate(this.form)" style="float:right">Send</button>
+							</td>
+						</tr>
+						</form>
+					</table>
+				</div>
+			</div>
+            
+			<%- include('footer') %> 
+      </body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Packages</title>
+        <link rel="stylesheet" href="vacations2">
+	</head>
+	<body>
+        <%- include('header') %> 
+		<div class="headline">Available Vacation Packages</div>
+      <hr class="ruler" />
+      <section class="vacations-content">
+        <% 
+          let dtFormat = new Intl.DateTimeFormat('en-US', {
+            day: '2-digit',
+            month: 'short',
+            year: 'numeric'
+          }); 
+          %>
+          <div id="packages">
+          <%	result.forEach((package)=>{ %>
+          <%
+          
+            var currentDate = new Date();
+            let day = 24 * 60 * 60 * 1000;
+            let startDate = new Date(package.PkgStartDate);
+            let endDate = new Date(package.PkgEndDate);
+            let daysRemaining = Math.round(Math.abs((startDate - endDate) / day ));
+            %> 
+            <% if(currentDate>startDate){ %>
+                <p> </p>
+                <% } else { %> 
+            <div class="packages-content">
+              <div class="left-section">
+			        <img src="<%=package.PackageId%>" />  
+              </div>
+              <div class="middle-section">
+                <h3 id="packageName"><%= package.PkgName%> </h3> 
+                <p id="packageDesc"><%=  package.PkgDesc %></p> 
+                <p id="packageStartDate">Depart <%=dtFormat.format(startDate)%> (<%= daysRemaining%> day package)</p> 
+              </div>
+              <div class="right-section">
+                <h3 id="packagePrice">$<%=package.PkgBasePrice%></h3>
+                <form id="form" method="post" action="/newbooking" >
+                  <input id="packageId" name="packageId" type="hidden" value="<%=package.PackageId%>">
+                  <button id="book" class="book" type="submit">Book</button>
+                </form>
+              </div>
+            </div>
+          </div>
+      <%	}});	%>
+      <%- include('footer') %> 
+	</body>
+</html>

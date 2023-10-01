@@ -1,0 +1,124 @@
+<!DOCTYPE html> 
+<html> 
+  <head>
+    <title>Home</title>
+    <link rel="stylesheet" href="general" />
+    <link rel="stylesheet" href="header" />
+    <link rel="stylesheet" href="navigation" />
+    <link rel="stylesheet" href="places" />
+    <link rel="stylesheet" href="vacations2" />
+   
+  </head>
+  <script>
+
+    var destinationImagesDir = [
+      "times-square",
+      "niagara-falls",
+      "golden-gate-bridge",
+    ];
+
+    var placeName = [
+      "Times Square, New York City",
+      "Niagara Falls, Toronto",
+      "Golden Gate Bridge, San Francisco",
+    ];
+
+    var links = [
+      "https://www.timessquarenyc.org/",
+      "https://niagarafalls.ca/",
+      "https://www.goldengate.org/",
+    ];
+
+    var destinationDescription = [
+      "<b>Times Square</b> one of the world's busiest pedestrian areas, it is also the hub of the <b>Broadway Theater District</b> and a major center of the world's <b>entertainment industry</b>. Times Square is one of the most visited tourist attractions, drawing an estimated 50 mimllion visitors annually. It's also a major commercial intersection, touriest destination, entertainment hub, and neighborhood in <b>Midtown Manhattan, New York City</b>.",
+      "<b>Niagara Falls</b> is the collective, name of three big waterfalls on the Niagara River in eastern North America, on the border between the United States and Canada. The three waterfalls are: the <b>Horseshoe Falls</b>, sometimes called the Canadian Falls, the <b>American Falls</b>, and the <b>smaller Bridal Veil Falls</b>. The American Falls and the Horseshoe Falls are separated with Goat Island, and the Bridal Veil Falls separated from the other waterfalls with Luna Island. Niagara falls is very well known for both its beauty and hydroelectric power. It has been a tourist attraction, commercial site and hydroelectricity source since the 19th century.",
+      "<b>Golden Gate Bridge</b> acclaimed as one of the world's most beautiful bridges, there are many different elements to the Golden Gate Bridge that make it unique. With its tremendous towers, sweeping cables, and great span, the Bridge is a sensory beauty and engineering wonder featuring color, sound and light.",
+    ];
+  </script>
+  <body>
+    <%- include('header') %> 
+    <main>
+      <section class="most-popuplar-places-content">
+        <div class="content-header">
+          <h1> Welcome to Travel Experts</h1>
+        </div>
+        <div class="content-title">
+          <h1 class="title">Most popular places on earth</h1>
+        </div>
+        <div class="table">
+          <script>
+            for (i = 0; i < destinationImagesDir.length; i++) {
+              document.write("<div class=rows>");
+              document.write("<div class=image-section>");
+              document.write(
+                "<h3 class=placeName><a class=links href='" +
+                  links[i] +
+                  "' target=_blank>" +
+                  placeName[i] +
+                  "</a></h3>"
+              );
+              document.write("<img class=destinationImages ");
+              document.write("src='" + destinationImagesDir[i] + "'/>");
+              document.write("<div class=tooltip>");
+              document.write(
+                "<img class=tooltipImage src='" +
+                  destinationImagesDir[i] +
+                  "'/>"
+              );
+              document.write("</div>");
+              document.write("</div>");
+              document.write("<div>");
+              document.write(
+                "<p align=justify class=placeDesc>" +
+                  destinationDescription[i] +
+                  "</p>"
+              );
+              document.write("</div>");
+              document.write("</div>");
+            }
+          </script>
+        </div>
+      </section>
+      <div class="headline">CHEAP VACATION RECOMMENDATIONS</div>
+      <hr class="ruler" />
+      <section class="vacations-content">
+        <% 
+          let dtFormat = new Intl.DateTimeFormat('en-US', {
+            day: '2-digit',
+            month: 'short',
+            year: 'numeric'
+            
+          }); 
+          %>
+          <div id="packages">
+          <%	result.forEach((package)=>{ %>
+          <% 
+            let day = 24 * 60 * 60 * 1000;
+            let startDate = new Date(package.PkgStartDate);
+            let endDate = new Date(package.PkgEndDate);
+            let daysRemaining = Math.round(Math.abs((startDate - endDate) / day ));
+          %>
+            <div class="packages-content">
+              <div class="left-section">
+                <img src="<%=package.PackageId%>">
+              </div>
+              <div class="middle-section">
+                <h3 id="packageName"><%= package.PkgName%> </h3> 
+                <p id="packageDesc"><%=  package.PkgDesc %></p> 
+                <p id="packageStartDate">Depart <%=dtFormat.format(startDate)%> (<%= daysRemaining%> days)</p> 
+              </div>
+              <div class="right-section">
+                <h3 id="packagePrice">$<%=package.PkgBasePrice%></h3>
+                <form id="form" method="post" action="/newbooking" >
+                  <input id="packageId" name="packageId" type="hidden" value="<%=package.PackageId%>">
+                  <button id="book" class="book" type="submit">Book</button>
+                </form>
+              </div>
+            </div>
+          </div>
+      <%	});	%>
+    </main>
+    <script src="index"></script>
+    <%- include('footer') %> 
+  </body>
+</html>

@@ -1,0 +1,27 @@
+.header {
+  display: flex;
+}
+
+#header_logo {
+  width: 100px;
+  object-fit: cover;
+}
+
+#left-section {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  flex: 1;
+}
+
+#header_logo {
+  margin-right: 30px;
+}
+
+#mid-section {
+  flex: 1;
+}
+
+#right-section {
+  flex: 1;
+}
